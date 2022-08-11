@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>urbanization index</title>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <link href="{{url_for('static',filename='css/style.css')}}" rel="stylesheet" type="text/css">
+</head>
+    <body>
+        <div>
+            <h1>urbanization index</h1>
+            <form action="{{url_for('predict')}}" method="post">
+                <label for="state">state</label>
+                <input type="text" name="state" list="statelevel_list" placeholder="enter the state">
+                <datalist id="statelevel_list">
+                    {% for i in state_list %}
+                        <option>{{i}}</option>
+                    {% endfor %}
+                    </datalist><br>
+                <label for="lat_tract">latitude</label>
+                <input type="text" name="lat_tract" placeholder="enter the latitude"><br>
+                <label for="long_tract">longitude</label>
+                <input type="text" name="long_tract" placeholder="enter the longitude"><br>
+                <label for="population">population</label>
+                <input type="text" name="population" placeholder="enter the population"><br>
+                <label for="adj_radiuspop_5">adj_radiuspop_5</label>
+                <input type="text" name="adj_radiuspop_5" placeholder="enter the adj_radiuspop_5"><br>
+                <button type="submit" class="btn btn-primary btn-block btn-large">predict</button>
+            </form>
+        </div>
+        <p>{{prediction}}</p>
+        <p>{{output}}</p>
+    </body>
+</html>
